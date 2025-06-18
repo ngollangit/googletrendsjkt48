@@ -1,55 +1,80 @@
 # googletrendsjkt48
-Analisis Tren Popularitas Member JKT48 Generasi 12
-Selamat datang di repositori ini! Proyek ini bertujuan untuk menganalisis dan memvisualisasikan popularitas member JKT48 Generasi 12 berdasarkan data minat pencarian dari Google Trends. Dengan menggunakan benchmark yang spesifik, kita bisa mendapatkan gambaran yang lebih detail tentang siapa saja member yang sedang menarik perhatian publik di platform Google Search dan YouTube.
+# Analisis Tren Popularitas Member JKT48 Generasi 12
 
-Tujuan Proyek
-Mengidentifikasi tren popularitas member JKT48 Generasi 12 dalam periode tertentu.
-Membandingkan minat pencarian masing-masing member relatif terhadap satu kata kunci patokan.
-Menyediakan visualisasi data yang intuitif (Bubble Chart) untuk memudahkan pemahaman.
-Mendokumentasikan proses pengambilan data menggunakan API Google Trends melalui pytrends.
-Metodologi
-Proyek ini menggunakan pendekatan berbasis data untuk mengukur popularitas:
+Proyek ini merupakan alat untuk menganalisis dan memvisualisasikan minat pencarian member JKT48 Generasi 12 menggunakan data dari Google Trends. Tujuannya adalah memberikan gambaran visual mengenai popularitas digital member dalam periode waktu tertentu, dengan perbandingan terhadap satu kata kunci patokan.
 
-Sumber Data Member: Data nama panggilan dan ID member JKT48 diambil dari file CSV (jkt48_members_data.csv).
-Rentang Member Terpilih: Analisis difokuskan pada member dengan ID Member antara 277 hingga 293, yang secara spesifik merupakan anggota JKT48 Generasi 12.
-Periode Analisis: Data tren dikumpulkan untuk periode dari 18 November 2023 hingga 31 Mei 2025.
-Kata Kunci Patokan (Benchmark): Minat pencarian setiap member dibandingkan dengan kata kunci "Freya JKT48". Pemilihan Freya sebagai benchmark dilakukan untuk mendapatkan skala perbandingan yang lebih granular dan relevan di antara member-member JKT48.
-Platform Pencarian: Analisis dilakukan untuk dua properti Google: Google Search (Web) dan YouTube.
-Pengambilan Data Otomatis: Pustaka pytrends digunakan untuk berinteraksi dengan Google Trends API secara otomatis, termasuk implementasi mekanisme retry dan jeda waktu untuk menghindari batasan rate limit.
-Hasil Analisis
-Setelah proses pengambilan data selesai, proyek ini akan menghasilkan:
+## Gambaran Umum
 
-File CSV Rekapitulasi: Sebuah file CSV (.csv) yang berisi ringkasan skor rata-rata minat pencarian untuk setiap member (dibandingkan dengan benchmark) di kedua platform (Web dan YouTube). File ini akan disimpan dengan nama yang mencerminkan rentang ID member dan periode analisis.
-Visualisasi Bubble Chart: Dua buah gambar Bubble Chart (.png), satu untuk Google Search (Web) dan satu untuk YouTube.
-Setiap gelembung merepresentasikan satu member JKT48 Generasi 12.
-Ukuran gelembung proporsional dengan skor rata-rata minat pencarian member tersebut (semakin besar, semakin tinggi minatnya).
-Warna gelembung juga menunjukkan skor minat (misalnya, gradasi dari ungu untuk skor rendah ke kuning untuk skor tinggi).
-Nama member dan skornya ditampilkan di dalam gelembung (tergantung ukuran gelembung).
-Cara Menjalankan Proyek
-Untuk menjalankan analisis ini, Anda dapat menggunakan Google Colaboratory (Colab) karena sudah terintegrasi dengan Google Drive dan mudah dalam instalasi dependensi.
+Proyek ini melakukan langkah-langkah berikut:
+1.  **Pengambilan Data Member**: Memuat daftar member JKT48 dari file CSV, khusus untuk Generasi 12 (ID 277-293).
+2.  **Analisis Google Trends**: Menggunakan pustaka `pytrends` untuk mengambil data minat pencarian dari Google Trends.
+    * **Benchmark**: Popularitas setiap member dibandingkan dengan kata kunci **"Freya JKT48"**.
+    * **Periode**: Analisis dilakukan dari **18 November 2023** hingga **31 Mei 2025**.
+    * **Platform**: Meliputi **Google Search (Web)** dan **YouTube**.
+3.  **Penyimpanan Hasil**: Data skor rata-rata popularitas disimpan ke dalam file CSV.
+4.  **Visualisasi**: Membuat "Bubble Chart" yang intuitif untuk memvisualisasikan popularitas member, di mana ukuran dan warna gelembung merepresentasikan skor minat pencarian.
 
-Siapkan Google Colab:
-Buka notebook Colab baru.
-Pastikan Anda login dengan akun Google Anda.
-Hubungkan ke Google Drive Anda (drive.mount('/content/drive')).
-Pastikan folder Colab Data JKT48 ada di "My Drive" atau sesuaikan DRIVE_BASE_PATH dalam skrip.
-Siapkan Data Member:
-Pastikan Anda memiliki file jkt48_members_data.csv di folder Colab Data JKT48 (atau di path yang ditentukan).
-File ini wajib memiliki kolom bernama Nama Panggilan JKT48 dan ID Member.
-Salin Kode:
-Salin seluruh kode dari file notebook (.ipynb) atau langsung dari repositori ini ke dalam sel-sel di Colab Anda.
-Jalankan Secara Berurutan:
-Sel 1 (Setup Awal): Jalankan sel pertama untuk menginstal dan memperbarui semua pustaka yang diperlukan. PENTING: Setelah ini, RESTART RUNTIME Colab Anda (Menu Runtime -> Restart session).
-Sel-sel Berikutnya: Setelah runtime di-restart, jalankan sel-sel berikutnya secara berurutan. Skrip akan secara otomatis memuat data, melakukan analisis, dan menghasilkan output CSV serta grafik.
-Dependensi
-Proyek ini menggunakan pustaka Python berikut:
+## Cara Menjalankan Proyek
 
-pandas
-pytrends
-matplotlib
-circlify
-numpy
-openpyxl (untuk membaca/menulis Excel, meskipun dalam skrip ini lebih fokus ke CSV)
-Catatan Penting
-Rate Limit Google Trends: Google Trends memiliki batasan jumlah permintaan. Skrip ini sudah dilengkapi dengan mekanisme retry dan jeda waktu untuk meminimalkan error TooManyRequestsError (429). Namun, jika Anda menjalankan berulang kali dalam waktu singkat, Anda mungkin tetap akan menghadapi batasan ini.
-Akurasi Data: Data dari Google Trends bersifat terindeks dan relatif. Ini adalah indikator minat pencarian, bukan jumlah pencarian absolut.
+Proyek ini dirancang untuk dijalankan dengan mudah di lingkungan **Google Colaboratory (Colab)**, yang sudah terintegrasi dengan Google Drive dan mempermudah instalasi pustaka.
+
+1.  **Akses Google Colab:**
+    * Buka [Google Colaboratory](https://colab.research.google.com/).
+    * Buat Notebook baru (`File` > `New notebook`).
+
+2.  **Mount Google Drive:**
+    * Jalankan kode Python ini di sel pertama Colab Anda untuk menghubungkan ke Google Drive:
+        ```python
+        from google.colab import drive
+        drive.mount('/content/drive', force_remount=True)
+        DRIVE_BASE_PATH = '/content/drive/My Drive/Colab Data JKT48/'
+        # Opsional: Buat folder jika belum ada
+        import os
+        if not os.path.exists(DRIVE_BASE_PATH):
+            os.makedirs(DRIVE_BASE_PATH)
+            print(f"Folder '{DRIVE_BASE_PATH}' telah dibuat.")
+        print(f"Path dasar untuk data: {DRIVE_BASE_PATH}")
+        ```
+    * Ikuti instruksi untuk mengizinkan akses Google Drive Anda.
+
+3.  **Siapkan Struktur Folder & Data Member:**
+    * Pastikan ada folder bernama `Colab Data JKT48` di "My Drive" Google Drive Anda.
+    * Upload file CSV berisi data member Anda (`jkt48_members_data.csv`) ke dalam folder `Colab Data JKT48` tersebut.
+    * File CSV ini **wajib** memiliki kolom `Nama Panggilan JKT48` dan `ID Member`.
+
+4.  **Salin dan Jalankan Kode:**
+    * Salin seluruh kode Python dari file notebook proyek ini ke dalam sel-sel di Colab Anda.
+    * **Langkah 1: Instalasi Library.** Jalankan sel kode pertama yang berisi perintah `!pip uninstall` dan `!pip install`. Ini akan menyiapkan semua pustaka yang dibutuhkan.
+    * **!!! PENTING: SETELAH SEL PERTAMA SELESAI, HARAP RESTART RUNTIME COLAB ANDA !!!**
+        * Anda bisa melakukannya lewat menu `Runtime` > `Restart session` (atau `Restart runtime`). Ini krusial agar pustaka yang baru diinstal terload dengan benar.
+    * **Langkah 2 - Seterusnya:** Setelah *runtime* di-restart, jalankan sel-sel kode berikutnya secara berurutan dari atas ke bawah. Skrip akan otomatis:
+        * Mengimpor pustaka.
+        * Memuat data member (akan difilter otomatis untuk ID 277-293).
+        * Menginisialisasi `pytrends`.
+        * Melakukan analisis tren untuk periode dan platform yang ditentukan.
+        * Menyimpan hasil rekap ke file CSV output (`jkt48_trends_REKAP_ID_277-293_Freya_RAW_2023-11-18_to_2025-05-31.csv`).
+        * Membuat dan menyimpan visualisasi Bubble Chart (`.png`) di folder yang sama.
+
+## Parameter Kunci (Dapat Disesuaikan dalam Kode)
+
+* `member_id_start`, `member_id_end`: Rentang ID Member JKT48 yang akan dianalisis (default: 277 dan 293).
+* `analysis_start_date`, `analysis_end_date`: Periode analisis tren (default: "2023-11-18" dan "2025-05-31").
+* `BENCHMARK_KEYWORD`: Kata kunci pembanding untuk analisis tren (default: "Freya JKT48").
+
+## Dependensi
+
+Proyek ini membutuhkan pustaka Python berikut:
+
+* `pandas`
+* `pytrends`
+* `matplotlib`
+* `circlify`
+* `numpy`
+* `openpyxl`
+
+## Catatan Penting
+
+* **Rate Limit Google Trends**: Google memiliki batasan jumlah permintaan API. Skrip ini sudah dilengkapi dengan mekanisme *retry* dan jeda waktu untuk meminimalkan error (kode 429), namun penggunaan berlebihan dalam waktu singkat tetap bisa memicu pembatasan.
+* **Data Relatif**: Skor dari Google Trends bersifat relatif (0-100) terhadap titik tertinggi dalam periode yang dianalisis untuk kata kunci tertentu. Ini mengukur minat pencarian relatif, bukan jumlah pencarian absolut.
+
+---
